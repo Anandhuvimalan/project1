@@ -1,0 +1,852 @@
+// ============================================================
+// KERALA CAR DEALERSHIP - TMDL (Tabular Model Definition Language)
+// ============================================================
+// 
+// HOW TO USE:
+// 1. This file can be used with Power BI Desktop's TMDL preview feature
+//    or with Tabular Editor 3+ for model development
+// 2. For Tabular Editor: File → New → Import from TMDL
+// 3. For VS Code: Use TMDL extension for editing
+//
+// ============================================================
+
+// ========================
+// MODEL DEFINITION
+// ========================
+
+model Model
+    culture: en-IN
+    defaultPowerBIDataSourceVersion: powerBI_V3
+    discourageImplicitMeasures: true
+
+
+// ========================
+// DATA SOURCES
+// ========================
+
+dataSource 'Kerala Car Dealership CSV'
+    type: file
+    connectionString: C:\Users\anand\Desktop\project1\kerala_car_dealership_data.csv
+
+
+// ========================
+// TABLE: Sales_Transactions
+// ========================
+
+table Sales_Transactions
+    lineageTag: sales-transactions-001
+
+    // ========== TRANSACTION INFO ==========
+    column Transaction_ID
+        dataType: string
+        isHidden: false
+        lineageTag: col-transaction-id
+        summarizeBy: none
+        sourceColumn: Transaction_ID
+
+    column Sale_Date
+        dataType: dateTime
+        formatString: dd-MMM-yyyy
+        lineageTag: col-sale-date
+        summarizeBy: none
+        sourceColumn: Sale_Date
+
+    column Sale_Time
+        dataType: dateTime
+        formatString: HH:mm:ss
+        lineageTag: col-sale-time
+        summarizeBy: none
+        sourceColumn: Sale_Time
+
+    column Sale_Year
+        dataType: int64
+        formatString: 0
+        lineageTag: col-sale-year
+        summarizeBy: none
+        sourceColumn: Sale_Year
+
+    column Sale_Month
+        dataType: string
+        lineageTag: col-sale-month
+        summarizeBy: none
+        sourceColumn: Sale_Month
+        sortByColumn: Month_Number
+
+    column Month_Number
+        dataType: int64
+        formatString: 0
+        lineageTag: col-month-number
+        summarizeBy: none
+        sourceColumn: Month_Number
+
+    column Quarter
+        dataType: string
+        lineageTag: col-quarter
+        summarizeBy: none
+        sourceColumn: Quarter
+
+    column Day_Name
+        dataType: string
+        lineageTag: col-day-name
+        summarizeBy: none
+        sourceColumn: Day_Name
+
+    column Year_Month
+        dataType: string
+        lineageTag: col-year-month
+        summarizeBy: none
+        sourceColumn: Year_Month
+
+    column Week_Number
+        dataType: int64
+        formatString: 0
+        lineageTag: col-week-number
+        summarizeBy: none
+        sourceColumn: Week_Number
+
+    // ========== CUSTOMER INFO ==========
+    column Customer_Name
+        dataType: string
+        lineageTag: col-customer-name
+        summarizeBy: none
+        sourceColumn: Customer_Name
+
+    column Customer_Phone
+        dataType: string
+        lineageTag: col-customer-phone
+        summarizeBy: none
+        sourceColumn: Customer_Phone
+        isHidden: true
+
+    column Customer_Email
+        dataType: string
+        lineageTag: col-customer-email
+        summarizeBy: none
+        sourceColumn: Customer_Email
+        isHidden: true
+
+    column Customer_Address
+        dataType: string
+        lineageTag: col-customer-address
+        summarizeBy: none
+        sourceColumn: Customer_Address
+        isHidden: true
+
+    column Customer_Age_Group
+        dataType: string
+        lineageTag: col-customer-age-group
+        summarizeBy: none
+        sourceColumn: Customer_Age_Group
+
+    column Customer_Occupation
+        dataType: string
+        lineageTag: col-customer-occupation
+        summarizeBy: none
+        sourceColumn: Customer_Occupation
+
+    // ========== VEHICLE INFO ==========
+    column Vehicle_Make
+        dataType: string
+        lineageTag: col-vehicle-make
+        summarizeBy: none
+        sourceColumn: Vehicle_Make
+
+    column Vehicle_Model
+        dataType: string
+        lineageTag: col-vehicle-model
+        summarizeBy: none
+        sourceColumn: Vehicle_Model
+
+    column Vehicle_Variant
+        dataType: string
+        lineageTag: col-vehicle-variant
+        summarizeBy: none
+        sourceColumn: Vehicle_Variant
+
+    column Manufacturing_Year
+        dataType: int64
+        formatString: 0
+        lineageTag: col-manufacturing-year
+        summarizeBy: none
+        sourceColumn: Manufacturing_Year
+
+    column Vehicle_Age_Years
+        dataType: int64
+        formatString: 0
+        lineageTag: col-vehicle-age
+        summarizeBy: none
+        sourceColumn: Vehicle_Age_Years
+
+    column Vehicle_Color
+        dataType: string
+        lineageTag: col-vehicle-color
+        summarizeBy: none
+        sourceColumn: Vehicle_Color
+
+    column Fuel_Type
+        dataType: string
+        lineageTag: col-fuel-type
+        summarizeBy: none
+        sourceColumn: Fuel_Type
+
+    column Transmission
+        dataType: string
+        lineageTag: col-transmission
+        summarizeBy: none
+        sourceColumn: Transmission
+
+    column Condition
+        dataType: string
+        lineageTag: col-condition
+        summarizeBy: none
+        sourceColumn: Condition
+
+    column Is_New_Car
+        dataType: string
+        lineageTag: col-is-new-car
+        summarizeBy: none
+        sourceColumn: Is_New_Car
+
+    column Odometer_KM
+        dataType: int64
+        formatString: #,##0
+        lineageTag: col-odometer
+        summarizeBy: sum
+        sourceColumn: Odometer_KM
+
+    column Chassis_Number
+        dataType: string
+        lineageTag: col-chassis
+        summarizeBy: none
+        sourceColumn: Chassis_Number
+        isHidden: true
+
+    column Registration_Number
+        dataType: string
+        lineageTag: col-registration
+        summarizeBy: none
+        sourceColumn: Registration_Number
+
+    // ========== PRICING ==========
+    column Ex_Showroom_Price_INR
+        dataType: currency
+        formatString: ₹#,##0
+        lineageTag: col-ex-showroom
+        summarizeBy: sum
+        sourceColumn: Ex_Showroom_Price_INR
+
+    column Accessories_Cost_INR
+        dataType: currency
+        formatString: ₹#,##0
+        lineageTag: col-accessories
+        summarizeBy: sum
+        sourceColumn: Accessories_Cost_INR
+
+    column RTO_Charges_INR
+        dataType: currency
+        formatString: ₹#,##0
+        lineageTag: col-rto
+        summarizeBy: sum
+        sourceColumn: RTO_Charges_INR
+
+    column Insurance_Premium_INR
+        dataType: currency
+        formatString: ₹#,##0
+        lineageTag: col-insurance-premium
+        summarizeBy: sum
+        sourceColumn: Insurance_Premium_INR
+
+    column Total_On_Road_Price_INR
+        dataType: currency
+        formatString: ₹#,##0
+        lineageTag: col-total-price
+        summarizeBy: sum
+        sourceColumn: Total_On_Road_Price_INR
+
+    column Price_Segment
+        dataType: string
+        lineageTag: col-price-segment
+        summarizeBy: none
+        sourceColumn: Price_Segment
+
+    column Estimated_Margin_INR
+        dataType: currency
+        formatString: ₹#,##0
+        lineageTag: col-margin
+        summarizeBy: sum
+        sourceColumn: Estimated_Margin_INR
+
+    // ========== PAYMENT ==========
+    column Payment_Method
+        dataType: string
+        lineageTag: col-payment-method
+        summarizeBy: none
+        sourceColumn: Payment_Method
+
+    column Down_Payment_INR
+        dataType: currency
+        formatString: ₹#,##0
+        lineageTag: col-down-payment
+        summarizeBy: sum
+        sourceColumn: Down_Payment_INR
+
+    column Loan_Amount_INR
+        dataType: currency
+        formatString: ₹#,##0
+        lineageTag: col-loan-amount
+        summarizeBy: sum
+        sourceColumn: Loan_Amount_INR
+
+    column Loan_Taken
+        dataType: string
+        lineageTag: col-loan-taken
+        summarizeBy: none
+        sourceColumn: Loan_Taken
+
+    column Loan_Tenure_Months
+        dataType: int64
+        formatString: 0
+        lineageTag: col-loan-tenure
+        summarizeBy: none
+        sourceColumn: Loan_Tenure_Months
+
+    column Interest_Rate_Percent
+        dataType: double
+        formatString: 0.00%
+        lineageTag: col-interest-rate
+        summarizeBy: none
+        sourceColumn: Interest_Rate_Percent
+
+    // ========== INSURANCE & WARRANTY ==========
+    column Insurance_Type
+        dataType: string
+        lineageTag: col-insurance-type
+        summarizeBy: none
+        sourceColumn: Insurance_Type
+
+    column Warranty_Type
+        dataType: string
+        lineageTag: col-warranty-type
+        summarizeBy: none
+        sourceColumn: Warranty_Type
+
+    // ========== DEALERSHIP ==========
+    column Salesperson_Name
+        dataType: string
+        lineageTag: col-salesperson
+        summarizeBy: none
+        sourceColumn: Salesperson_Name
+
+    column Dealership_Branch
+        dataType: string
+        lineageTag: col-branch
+        summarizeBy: none
+        sourceColumn: Dealership_Branch
+
+    column District
+        dataType: string
+        lineageTag: col-district
+        summarizeBy: none
+        sourceColumn: District
+
+    // ========== OTHER ==========
+    column Test_Drive_Taken
+        dataType: string
+        lineageTag: col-test-drive
+        summarizeBy: none
+        sourceColumn: Test_Drive_Taken
+
+    column Referral_Source
+        dataType: string
+        lineageTag: col-referral
+        summarizeBy: none
+        sourceColumn: Referral_Source
+
+    partition 'Sales_Transactions-Partition' = m
+        mode: import
+        source = ```
+            let
+                Source = Csv.Document(
+                    File.Contents("C:\Users\anand\Desktop\project1\kerala_car_dealership_data.csv"),
+                    [Delimiter=",", Columns=37, Encoding=65001, QuoteStyle=QuoteStyle.None]
+                ),
+                PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+                ChangedTypes = Table.TransformColumnTypes(PromotedHeaders, {
+                    {"Transaction_ID", type text},
+                    {"Sale_Date", type date},
+                    {"Sale_Time", type time},
+                    {"Customer_Name", type text},
+                    {"Customer_Phone", type text},
+                    {"Customer_Email", type text},
+                    {"Customer_Address", type text},
+                    {"Customer_Age_Group", type text},
+                    {"Customer_Occupation", type text},
+                    {"Vehicle_Make", type text},
+                    {"Vehicle_Model", type text},
+                    {"Vehicle_Variant", type text},
+                    {"Manufacturing_Year", Int64.Type},
+                    {"Vehicle_Color", type text},
+                    {"Fuel_Type", type text},
+                    {"Transmission", type text},
+                    {"Condition", type text},
+                    {"Odometer_KM", Int64.Type},
+                    {"Chassis_Number", type text},
+                    {"Registration_Number", type text},
+                    {"Ex_Showroom_Price_INR", Currency.Type},
+                    {"Accessories_Cost_INR", Currency.Type},
+                    {"RTO_Charges_INR", Currency.Type},
+                    {"Insurance_Premium_INR", Currency.Type},
+                    {"Total_On_Road_Price_INR", Currency.Type},
+                    {"Payment_Method", type text},
+                    {"Down_Payment_INR", Currency.Type},
+                    {"Loan_Amount_INR", Currency.Type},
+                    {"Loan_Tenure_Months", Int64.Type},
+                    {"Interest_Rate_Percent", type number},
+                    {"Insurance_Type", type text},
+                    {"Warranty_Type", type text},
+                    {"Salesperson_Name", type text},
+                    {"Dealership_Branch", type text},
+                    {"District", type text},
+                    {"Test_Drive_Taken", type text},
+                    {"Referral_Source", type text}
+                }),
+                AddedYear = Table.AddColumn(ChangedTypes, "Sale_Year", each Date.Year([Sale_Date]), Int64.Type),
+                AddedMonthName = Table.AddColumn(AddedYear, "Sale_Month", each Date.MonthName([Sale_Date]), type text),
+                AddedMonthNumber = Table.AddColumn(AddedMonthName, "Month_Number", each Date.Month([Sale_Date]), Int64.Type),
+                AddedQuarter = Table.AddColumn(AddedMonthNumber, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Sale_Date])), type text),
+                AddedDayName = Table.AddColumn(AddedQuarter, "Day_Name", each Date.DayOfWeekName([Sale_Date]), type text),
+                AddedYearMonth = Table.AddColumn(AddedDayName, "Year_Month", each Date.ToText([Sale_Date], "yyyy-MM"), type text),
+                AddedVehicleAge = Table.AddColumn(AddedYearMonth, "Vehicle_Age_Years", each Date.Year([Sale_Date]) - [Manufacturing_Year], Int64.Type),
+                AddedPriceSegment = Table.AddColumn(AddedVehicleAge, "Price_Segment", each 
+                    if [Total_On_Road_Price_INR] < 600000 then "Budget (< ₹6L)"
+                    else if [Total_On_Road_Price_INR] < 1200000 then "Mid-Range (₹6L-12L)"
+                    else if [Total_On_Road_Price_INR] < 2000000 then "Premium (₹12L-20L)"
+                    else "Luxury (> ₹20L)", type text),
+                AddedIsNew = Table.AddColumn(AddedPriceSegment, "Is_New_Car", each if [Condition] = "New" then "Yes" else "No", type text),
+                AddedLoanFlag = Table.AddColumn(AddedIsNew, "Loan_Taken", each if [Loan_Amount_INR] > 0 then "Yes" else "No", type text),
+                AddedProfitMargin = Table.AddColumn(AddedLoanFlag, "Estimated_Margin_INR", each 
+                    if [Condition] = "New" then [Ex_Showroom_Price_INR] * 0.05
+                    else [Ex_Showroom_Price_INR] * 0.12, Currency.Type),
+                AddedWeekNumber = Table.AddColumn(AddedProfitMargin, "Week_Number", each Date.WeekOfYear([Sale_Date]), Int64.Type)
+            in
+                AddedWeekNumber
+            ```
+
+
+// ========================
+// TABLE: Calendar
+// ========================
+
+table Calendar
+    lineageTag: calendar-001
+    dataCategory: Time
+
+    column Date
+        dataType: dateTime
+        formatString: dd-MMM-yyyy
+        isKey: true
+        lineageTag: cal-date
+        summarizeBy: none
+        sourceColumn: Date
+
+    column Year
+        dataType: int64
+        formatString: 0
+        lineageTag: cal-year
+        summarizeBy: none
+        sourceColumn: Year
+
+    column Month_Number
+        dataType: int64
+        formatString: 0
+        lineageTag: cal-month-num
+        summarizeBy: none
+        sourceColumn: Month_Number
+
+    column Month_Name
+        dataType: string
+        lineageTag: cal-month-name
+        summarizeBy: none
+        sourceColumn: Month_Name
+        sortByColumn: Month_Number
+
+    column Month_Short
+        dataType: string
+        lineageTag: cal-month-short
+        summarizeBy: none
+        sourceColumn: Month_Short
+        sortByColumn: Month_Number
+
+    column Quarter
+        dataType: string
+        lineageTag: cal-quarter
+        summarizeBy: none
+        sourceColumn: Quarter
+
+    column Quarter_Number
+        dataType: int64
+        formatString: 0
+        lineageTag: cal-quarter-num
+        summarizeBy: none
+        sourceColumn: Quarter_Number
+
+    column Day
+        dataType: int64
+        formatString: 0
+        lineageTag: cal-day
+        summarizeBy: none
+        sourceColumn: Day
+
+    column Day_Name
+        dataType: string
+        lineageTag: cal-day-name
+        summarizeBy: none
+        sourceColumn: Day_Name
+        sortByColumn: Day_of_Week
+
+    column Day_Short
+        dataType: string
+        lineageTag: cal-day-short
+        summarizeBy: none
+        sourceColumn: Day_Short
+        sortByColumn: Day_of_Week
+
+    column Day_of_Week
+        dataType: int64
+        formatString: 0
+        lineageTag: cal-dow
+        summarizeBy: none
+        sourceColumn: Day_of_Week
+
+    column Week_Number
+        dataType: int64
+        formatString: 0
+        lineageTag: cal-week
+        summarizeBy: none
+        sourceColumn: Week_Number
+
+    column Year_Month
+        dataType: string
+        lineageTag: cal-year-month
+        summarizeBy: none
+        sourceColumn: Year_Month
+
+    column Year_Quarter
+        dataType: string
+        lineageTag: cal-year-quarter
+        summarizeBy: none
+        sourceColumn: Year_Quarter
+
+    column Is_Weekend
+        dataType: string
+        lineageTag: cal-is-weekend
+        summarizeBy: none
+        sourceColumn: Is_Weekend
+
+    column Fiscal_Year
+        dataType: string
+        lineageTag: cal-fiscal-year
+        summarizeBy: none
+        sourceColumn: Fiscal_Year
+
+    column Fiscal_Quarter
+        dataType: string
+        lineageTag: cal-fiscal-quarter
+        summarizeBy: none
+        sourceColumn: Fiscal_Quarter
+
+    column Month_Year
+        dataType: string
+        lineageTag: cal-month-year
+        summarizeBy: none
+        sourceColumn: Month_Year
+
+    partition 'Calendar-Partition' = m
+        mode: import
+        source = ```
+            let
+                StartDate = #date(2022, 1, 1),
+                EndDate = #date(2026, 12, 31),
+                NumberOfDays = Duration.Days(EndDate - StartDate) + 1,
+                DateList = List.Dates(StartDate, NumberOfDays, #duration(1, 0, 0, 0)),
+                DateTable = Table.FromList(DateList, Splitter.SplitByNothing(), {"Date"}, null, ExtraValues.Error),
+                ChangedType = Table.TransformColumnTypes(DateTable, {{"Date", type date}}),
+                AddedYear = Table.AddColumn(ChangedType, "Year", each Date.Year([Date]), Int64.Type),
+                AddedMonthNum = Table.AddColumn(AddedYear, "Month_Number", each Date.Month([Date]), Int64.Type),
+                AddedMonthName = Table.AddColumn(AddedMonthNum, "Month_Name", each Date.MonthName([Date]), type text),
+                AddedMonthShort = Table.AddColumn(AddedMonthName, "Month_Short", each Text.Start(Date.MonthName([Date]), 3), type text),
+                AddedQuarter = Table.AddColumn(AddedMonthShort, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+                AddedQuarterNum = Table.AddColumn(AddedQuarter, "Quarter_Number", each Date.QuarterOfYear([Date]), Int64.Type),
+                AddedDay = Table.AddColumn(AddedQuarterNum, "Day", each Date.Day([Date]), Int64.Type),
+                AddedDayName = Table.AddColumn(AddedDay, "Day_Name", each Date.DayOfWeekName([Date]), type text),
+                AddedDayShort = Table.AddColumn(AddedDayName, "Day_Short", each Text.Start(Date.DayOfWeekName([Date]), 3), type text),
+                AddedDayOfWeek = Table.AddColumn(AddedDayShort, "Day_of_Week", each Date.DayOfWeek([Date], Day.Sunday) + 1, Int64.Type),
+                AddedWeekNum = Table.AddColumn(AddedDayOfWeek, "Week_Number", each Date.WeekOfYear([Date]), Int64.Type),
+                AddedYearMonth = Table.AddColumn(AddedWeekNum, "Year_Month", each Date.ToText([Date], "yyyy-MM"), type text),
+                AddedYearQuarter = Table.AddColumn(AddedYearMonth, "Year_Quarter", each Text.From(Date.Year([Date])) & "-Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+                AddedIsWeekend = Table.AddColumn(AddedYearQuarter, "Is_Weekend", each if Date.DayOfWeek([Date], Day.Monday) >= 5 then "Yes" else "No", type text),
+                AddedFiscalYear = Table.AddColumn(AddedIsWeekend, "Fiscal_Year", each 
+                    if Date.Month([Date]) >= 4 then "FY " & Text.From(Date.Year([Date])) & "-" & Text.End(Text.From(Date.Year([Date]) + 1), 2)
+                    else "FY " & Text.From(Date.Year([Date]) - 1) & "-" & Text.End(Text.From(Date.Year([Date])), 2), type text),
+                AddedFiscalQuarter = Table.AddColumn(AddedFiscalYear, "Fiscal_Quarter", each 
+                    let month = Date.Month([Date]) in
+                    if month >= 4 and month <= 6 then "FQ1"
+                    else if month >= 7 and month <= 9 then "FQ2"
+                    else if month >= 10 and month <= 12 then "FQ3"
+                    else "FQ4", type text),
+                AddedMonthYear = Table.AddColumn(AddedFiscalQuarter, "Month_Year", each Date.ToText([Date], "MMM yyyy"), type text)
+            in
+                AddedMonthYear
+            ```
+
+
+// ========================
+// RELATIONSHIPS
+// ========================
+
+relationship 'Calendar_to_Sales'
+    fromColumn: Sales_Transactions.Sale_Date
+    toColumn: Calendar.Date
+    crossFilteringBehavior: bothDirections
+
+
+// ========================
+// DAX MEASURES
+// ========================
+
+table '_Measures'
+    lineageTag: measures-001
+
+    // ========== SALES KPIs ==========
+    measure 'Total Sales' = SUM(Sales_Transactions[Total_On_Road_Price_INR])
+        formatString: ₹#,##0
+        displayFolder: Sales
+
+    measure 'Total Transactions' = COUNTROWS(Sales_Transactions)
+        formatString: #,##0
+        displayFolder: Sales
+
+    measure 'Average Sale Value' = AVERAGE(Sales_Transactions[Total_On_Road_Price_INR])
+        formatString: ₹#,##0
+        displayFolder: Sales
+
+    measure 'Total Margin' = SUM(Sales_Transactions[Estimated_Margin_INR])
+        formatString: ₹#,##0
+        displayFolder: Sales
+
+    measure 'Margin %' = DIVIDE([Total Margin], [Total Sales], 0)
+        formatString: 0.00%
+        displayFolder: Sales
+
+    // ========== NEW vs USED ==========
+    measure 'New Car Sales' = 
+        CALCULATE(
+            SUM(Sales_Transactions[Total_On_Road_Price_INR]),
+            Sales_Transactions[Condition] = "New"
+        )
+        formatString: ₹#,##0
+        displayFolder: Vehicle Analysis
+
+    measure 'Used Car Sales' = 
+        CALCULATE(
+            SUM(Sales_Transactions[Total_On_Road_Price_INR]),
+            Sales_Transactions[Condition] = "Used"
+        )
+        formatString: ₹#,##0
+        displayFolder: Vehicle Analysis
+
+    measure 'New Car Count' = 
+        CALCULATE(
+            COUNTROWS(Sales_Transactions),
+            Sales_Transactions[Condition] = "New"
+        )
+        formatString: #,##0
+        displayFolder: Vehicle Analysis
+
+    measure 'Used Car Count' = 
+        CALCULATE(
+            COUNTROWS(Sales_Transactions),
+            Sales_Transactions[Condition] = "Used"
+        )
+        formatString: #,##0
+        displayFolder: Vehicle Analysis
+
+    measure 'New Car %' = DIVIDE([New Car Count], [Total Transactions], 0)
+        formatString: 0.0%
+        displayFolder: Vehicle Analysis
+
+    // ========== LOAN ANALYSIS ==========
+    measure 'Total Loan Amount' = SUM(Sales_Transactions[Loan_Amount_INR])
+        formatString: ₹#,##0
+        displayFolder: Financing
+
+    measure 'Total Down Payment' = SUM(Sales_Transactions[Down_Payment_INR])
+        formatString: ₹#,##0
+        displayFolder: Financing
+
+    measure 'Loan Transactions' = 
+        CALCULATE(
+            COUNTROWS(Sales_Transactions),
+            Sales_Transactions[Loan_Taken] = "Yes"
+        )
+        formatString: #,##0
+        displayFolder: Financing
+
+    measure 'Loan %' = DIVIDE([Loan Transactions], [Total Transactions], 0)
+        formatString: 0.0%
+        displayFolder: Financing
+
+    measure 'Avg Loan Amount' = 
+        CALCULATE(
+            AVERAGE(Sales_Transactions[Loan_Amount_INR]),
+            Sales_Transactions[Loan_Taken] = "Yes"
+        )
+        formatString: ₹#,##0
+        displayFolder: Financing
+
+    measure 'Avg Interest Rate' = 
+        CALCULATE(
+            AVERAGE(Sales_Transactions[Interest_Rate_Percent]),
+            Sales_Transactions[Loan_Taken] = "Yes"
+        )
+        formatString: 0.00%
+        displayFolder: Financing
+
+    // ========== TIME INTELLIGENCE ==========
+    measure 'Sales YTD' = 
+        CALCULATE(
+            [Total Sales],
+            DATESYTD(Calendar[Date])
+        )
+        formatString: ₹#,##0
+        displayFolder: Time Intelligence
+
+    measure 'Sales MTD' = 
+        CALCULATE(
+            [Total Sales],
+            DATESMTD(Calendar[Date])
+        )
+        formatString: ₹#,##0
+        displayFolder: Time Intelligence
+
+    measure 'Sales QTD' = 
+        CALCULATE(
+            [Total Sales],
+            DATESQTD(Calendar[Date])
+        )
+        formatString: ₹#,##0
+        displayFolder: Time Intelligence
+
+    measure 'Sales Previous Month' = 
+        CALCULATE(
+            [Total Sales],
+            PREVIOUSMONTH(Calendar[Date])
+        )
+        formatString: ₹#,##0
+        displayFolder: Time Intelligence
+
+    measure 'Sales Previous Year' = 
+        CALCULATE(
+            [Total Sales],
+            SAMEPERIODLASTYEAR(Calendar[Date])
+        )
+        formatString: ₹#,##0
+        displayFolder: Time Intelligence
+
+    measure 'Sales MoM Growth' = 
+        VAR CurrentMonth = [Total Sales]
+        VAR PreviousMonth = [Sales Previous Month]
+        RETURN DIVIDE(CurrentMonth - PreviousMonth, PreviousMonth, 0)
+        formatString: 0.0%
+        displayFolder: Time Intelligence
+
+    measure 'Sales YoY Growth' = 
+        VAR CurrentYear = [Total Sales]
+        VAR PreviousYear = [Sales Previous Year]
+        RETURN DIVIDE(CurrentYear - PreviousYear, PreviousYear, 0)
+        formatString: 0.0%
+        displayFolder: Time Intelligence
+
+    // ========== CUSTOMER ANALYSIS ==========
+    measure 'Unique Customers' = DISTINCTCOUNT(Sales_Transactions[Customer_Name])
+        formatString: #,##0
+        displayFolder: Customer
+
+    measure 'Avg Sales per Customer' = DIVIDE([Total Sales], [Unique Customers], 0)
+        formatString: ₹#,##0
+        displayFolder: Customer
+
+    measure 'Test Drive Conversion' = 
+        VAR TestDriveTaken = CALCULATE(
+            COUNTROWS(Sales_Transactions),
+            Sales_Transactions[Test_Drive_Taken] = "Yes"
+        )
+        RETURN DIVIDE(TestDriveTaken, [Total Transactions], 0)
+        formatString: 0.0%
+        displayFolder: Customer
+
+    // ========== BRANCH ANALYSIS ==========
+    measure 'Branches Count' = DISTINCTCOUNT(Sales_Transactions[Dealership_Branch])
+        formatString: #,##0
+        displayFolder: Branch
+
+    measure 'Sales per Branch' = DIVIDE([Total Sales], [Branches Count], 0)
+        formatString: ₹#,##0
+        displayFolder: Branch
+
+    measure 'Transactions per Branch' = DIVIDE([Total Transactions], [Branches Count], 0)
+        formatString: 0.0
+        displayFolder: Branch
+
+    // ========== RANKINGS ==========
+    measure 'Sales Rank by Make' = 
+        RANKX(
+            ALL(Sales_Transactions[Vehicle_Make]),
+            [Total Sales],
+            ,
+            DESC,
+            DENSE
+        )
+        formatString: 0
+        displayFolder: Rankings
+
+    measure 'Sales Rank by Branch' = 
+        RANKX(
+            ALL(Sales_Transactions[Dealership_Branch]),
+            [Total Sales],
+            ,
+            DESC,
+            DENSE
+        )
+        formatString: 0
+        displayFolder: Rankings
+
+    measure 'Sales Rank by Salesperson' = 
+        RANKX(
+            ALL(Sales_Transactions[Salesperson_Name]),
+            [Total Sales],
+            ,
+            DESC,
+            DENSE
+        )
+        formatString: 0
+        displayFolder: Rankings
+
+
+// ========================
+// DISPLAY FOLDER HIERARCHY
+// ========================
+
+// Organized measure folders:
+// - Sales: Core revenue metrics
+// - Vehicle Analysis: New vs Used breakdown
+// - Financing: Loan and payment metrics
+// - Time Intelligence: Period comparisons
+// - Customer: Customer behavior metrics
+// - Branch: Location performance
+// - Rankings: Competitive rankings
+
+
+// ============================================================
+// END OF TMDL DEFINITION
+// ============================================================
