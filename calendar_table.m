@@ -1,23 +1,6 @@
-// ============================================================
-// CALENDAR/DATE TABLE - POWER QUERY M CODE
-// ============================================================
-// 
-// HOW TO USE:
-// 1. In Power Query Editor, click Home → New Source → Blank Query
-// 2. Click "Advanced Editor"
-// 3. DELETE all existing code
-// 4. PASTE this entire code
-// 5. Click "Done"
-// 6. In Query Settings (right side), rename to "Calendar"
-// 7. Click "Close & Apply"
-//
-// AFTER LOADING:
-// 1. Go to Model View in Power BI
-// 2. Drag Calendar[Date] to Sales_Transactions[Sale_Date] to create relationship
-// 3. Go to Table Tools → Mark as Date Table → Select "Date" column
-//
-// ============================================================
-
+gefdwefwevfbkewuygfuewygfvcehbcve
+we;khchweuyqgceuy
+dcjbdwjcbh
 let
     // Define date range (matches your sales data range)
     StartDate = #date(2022, 1, 1),
